@@ -27,7 +27,7 @@ def distNeighbours(X_train,Y_train,X_test,K):
         for j in range(len(X_train.columns)):   
                 eDistance+=round(np.sqrt(pow((X_train.iloc[i,j]-X_test[j]),2)),2)
         distance.append((eDistance,i,Y_train.iloc[i]))
-        distance=sorted(distance, key=lambda x: x[0])[0:K]
+        distance=sorted(distance, key=lambda x: x[0])[:K]
     return distance
 
 # Predict the output of the numeric variables based on K nearest neighbours
