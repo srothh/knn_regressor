@@ -61,11 +61,3 @@ def gridSearch(X, y, n_list, est_better, est_min, estimator = metrics.mean_squar
                 curr = parameter
                 max_est = est
         return curr
-
-
-reg = kNNRegression(neighbors = 3)
-
-reg.fit(train.drop('target', axis=1), train['target'])
-print(reg.predict(train.drop('target', axis=1)))
-
-print(gridSearch(train.drop('target', axis=1), train['target'], [1,2,3,4], est_min=float('inf'), est_better=(lambda curr, max: curr < max)))

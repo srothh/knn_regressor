@@ -1,5 +1,5 @@
 from sklearn.neighbors import KNeighborsRegressor
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import LabelEncoder
 
@@ -43,12 +43,12 @@ print(f'\ttook {stop - start:.4f}')
 print(f'\tCV of the sklearn KNN: mean {np.mean(CV_knn):.4f} values {CV_knn}')
 
 
-print('\tDecisionTree')
+print('\tRandomForest')
 start = timeit.default_timer()
-CV_tree = cross_val_score(DecisionTreeRegressor(), housing_X, housing_y, cv=5)
+CV_tree = cross_val_score(RandomForestRegressor(), housing_X, housing_y, cv=5)
 stop = timeit.default_timer()
 print(f'\ttook {stop - start:.4f}')
-print(f'\tCV of the sklearn DecisionTree: mean {np.mean(CV_tree):.4f} values {CV_tree}')
+print(f'\tCV of the sklearn RandomForest: mean {np.mean(CV_tree):.4f} values {CV_tree}')
 
 
 print('song')
@@ -62,14 +62,14 @@ song_df_tf['song_name'] = enc.transform(song_df['song_name'])
 song_X = song_df_tf.drop('song_popularity', axis=1)
 song_y = song_df_tf['song_popularity']
 start = timeit.default_timer()
-best_k = 3
-best_k = gridSearch(
-        song_X,
-        song_y,
-        range(1,20),
-        est_min=float('inf'),
-        est_better=(lambda curr, max: curr < max)
-    )
+best_k = 10
+# best_k = gridSearch(
+#         song_X,
+#         song_y,
+#         range(1,20),
+#         est_min=float('inf'),
+#         est_better=(lambda curr, max: curr < max)
+#     )
 stop = timeit.default_timer()
 print(f'\ttook {stop - start:.4f}')
 print(f'\tbest k: {best_k:.4f}')
@@ -89,9 +89,9 @@ print(f'\ttook {stop - start:.4f}')
 print(f'\tCV of the sklearn KNN: mean {np.mean(CV_knn):.4f} values {CV_knn}')
 
 
-print('\tDecisionTree')
+print('\tRandomForest')
 start = timeit.default_timer()
-CV_tree = cross_val_score(DecisionTreeRegressor(), song_X, song_y, cv=5)
+CV_tree = cross_val_score(RandomForestRegressor(), song_X, song_y, cv=5)
 stop = timeit.default_timer()
 print(f'\ttook {stop - start:.4f}')
-print(f'\tCV of the sklearn DecisionTree: mean {np.mean(CV_tree):.4f} values {CV_tree}')
+print(f'\tCV of the sklearn RandomForest: mean {np.mean(CV_tree):.4f} values {CV_tree}')
