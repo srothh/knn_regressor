@@ -2,9 +2,10 @@ import numpy as np
 import pandas as pd
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
+from sklearn.base import BaseEstimator, RegressorMixin
 
 
-class kNNRegression:
+class kNNRegression(BaseEstimator, RegressorMixin):
     def __init__(self, neighbors):
         self.neighbors = neighbors
     
