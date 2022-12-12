@@ -11,9 +11,6 @@ class kNNRegression:
     def fit(self,X_train,y_train):
         self.X_train = X_train
         self.y_train = y_train
-        mu = np.mean(X_train, 0)
-        sigma = np.std(X_train, 0)
-        X_train = (X_train - mu ) / sigma
         return self
     
     def euclidean_distance(self, X_train, y_train, X_test, K):
@@ -22,9 +19,6 @@ class kNNRegression:
 
     def predict(self, X_test):
         predictions = []
-        mu = np.mean(self.X_train, 0)
-        sigma = np.std(self.X_train, 0)
-        X_test = (X_test - mu ) / sigma
         for i in range(len(X_test)):
             predictions.append(
                 np.mean(
